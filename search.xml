@@ -13,7 +13,7 @@
 <p>模型的目标是找到一个最优参数 $\theta^*$，即</p>
 <script type="math/tex; mode=display">\theta^*=\argmax_{\theta} \sum_{\mathcal{P},\mathcal{C}^\mathcal{P}} \log p(\mathcal{C}^\mathcal{P}|\mathcal{P};\theta)</script><p>然后模型分为 Encoder 和 Decoder 两个部分。在 Encoder 部分，每次用 $P<em>i$ 向量和之前的隐藏状态 $e</em>{i-1}$ 生成当前隐藏状态 $e<em>i$，直到收到 $\Rightarrow$ 表示输入序列结束。在 Decoder 部分，将之前的隐藏状态 $e_n$ 作为输入，类似的得到隐藏状态 $d_i$，之后每次利用 $d</em>{i-1}$ 进行预测，直到收到 $\Leftarrow$ 表示输出序列结束。</p>
 <h2 id="2-2-注意力机制"><a href="#2-2-注意力机制" class="headerlink" title="2.2 注意力机制"></a>2.2 注意力机制</h2><p>adsfdsf</p>
-<p>$\mathcal{\mathcal{C}^\mathcal{P}}={C<em>1,\dots,C</em>{m(\mathcal{P})}}$ 是一个有 $m(\mathcal{P})$ 个下标的序列，$C_i$ 是 $1$ 到 $n$ 的一个数。</p>
+<p>adsfasdf $\mathcal{\mathcal{C}^\mathcal{P}}={C<em>1,\dots,C</em>{m(\mathcal{P})}}$ 是一个有 $m(\mathcal{P})$ 个下标的序列，$C_i$ 是 $1$ 到 $n$ 的一个数。</p>
 <p>asdfasdf</p>
 ]]></content>
       <categories>
