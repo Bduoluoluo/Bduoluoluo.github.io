@@ -7,7 +7,7 @@
 <p>现有的模型（如 sequence-to-sequence 和 Neural Turing Machines）都无法做到这一点，因为它们输入长度是固定的。</p>
 <p>在这篇论文中，用 Ptr-Nets 求解了三个组合优化问题的近似解（凸包问题、Delaunay 三角形剖分问题和旅行商问题）。</p>
 <h1 id="1-介绍"><a href="#1-介绍" class="headerlink" title="1 介绍"></a>1 介绍</h1><p>对比了 Sequence-to-Sequence 和 Ptr-Net，Ptr-Net 不是像 Sequence-to-Sequence 那样将一个序列转换成另外一个序列，而是产生一系列指向输入序列元素的指针。</p>
-<p>$\mathcal{\mathcal{C}^\mathcal{P}}$</p>
+<p>$\mathcal{\mathcal{C}^\mathcal{P}}={C<em>1,\dots,C</em>{m(\mathcal{P})}}$</p>
 <h1 id="2-模型"><a href="#2-模型" class="headerlink" title="2 模型"></a>2 模型</h1><h2 id="2-1-Sequence-to-Sequence-模型"><a href="#2-1-Sequence-to-Sequence-模型" class="headerlink" title="2.1 Sequence-to-Sequence 模型"></a>2.1 Sequence-to-Sequence 模型</h2><p>训练对 $(\mathcal{P},\mathcal{C}^\mathcal{P})$，计算概率 $p(\mathcal{C}^\mathcal{P}|\mathcal{P};\theta)$，$\theta$ 是 RNN 模型的参数，通过概率链式法则可以得到如下计算公式：</p>
 <script type="math/tex; mode=display">p(\mathcal{C}^\mathcal{P}|\mathcal{P};\theta)=\prod_{i=1}^{m(\mathcal{P})} p(C_i|C_1,\dots,C_{i-1},\mathcal{P};\theta)</script><p>$\mathcal{P} = {P_1,\dots,P_n}$ 是 $n$ 个向量。</p>
 <p>$\mathcal{\mathcal{C}^\mathcal{P}}={C<em>1,\dots,C</em>{m(\mathcal{P})}}$ 是一个有 $m(\mathcal{P})$ 个下标的序列，$C_i$ 是 $1$ 到 $n$ 的一个数。</p>
