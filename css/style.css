@@ -1,6 +1,6 @@
 /*文章的整体背景，渐变色设置*/
 #web_bg {
-	background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
+	background-image: url("../img/top.png"), linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
 	/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 	background: #2BC0E4;
 	/* fallback for old browsers */
