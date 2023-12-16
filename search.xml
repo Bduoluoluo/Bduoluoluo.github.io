@@ -12,7 +12,20 @@
 <p>$\mathcal{\mathcal{C}^\mathcal{P}}=\{C_1,\dots,C_{m(\mathcal{P})}\}$ 是一个有 $m(\mathcal{P})$ 个下标的序列，$C_i$ 是 $1$ 到 $n$ 的一个数。</p>
 <p>模型的目标是找到一个最优参数 $\theta^*$，即</p>
 <script type="math/tex; mode=display">\theta^*=\arg \max_{\theta} \sum_{\mathcal{P},\mathcal{C}^\mathcal{P}} \log p(\mathcal{C}^\mathcal{P}|\mathcal{P};\theta)</script><p>然后模型分为 Encoder 和 Decoder 两个部分。在 Encoder 部分，每次用 $P_i$ 向量和之前的隐藏状态 $e_{i-1}$ 生成当前隐藏状态 $e_i$，直到收到 $\Rightarrow$ 表示输入序列结束。在 Decoder 部分，将之前的隐藏状态 $e_n$ 作为输入，类似的得到隐藏状态 $d_i$，之后每次利用 $d_{i-1}$ 进行预测，直到收到 $\Leftarrow$ 表示输出序列结束。</p>
-<h2 id="2-2-注意力机制"><a href="#2-2-注意力机制" class="headerlink" title="2.2 注意力机制"></a>2.2 注意力机制</h2>]]></content>
+<h2 id="2-2-注意力机制"><a href="#2-2-注意力机制" class="headerlink" title="2.2 注意力机制"></a>2.2 注意力机制</h2><p>先前的 Sequence-to-Sequence 模型在输入完序列 $\mathcal{P}$ 之后用固定维度的 RNN 处理整个输出序列 $\mathcal{C}^\mathcal{P}$，这限制了流向生成模型的信息和计算数量。而注意力模型通过额外的利用了注意力机制的神经网络来改良 Encoder 的输入序列。</p>
+<p>首先定义 Encoder 的隐藏状态为 $(e_1,\dots,e_n)$，Decoder 的隐藏状态为 $(d_1,\dots,d_{m(\mathcal{P})})$，对于每个输出时刻 $i$，计算过程如下：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+u^i_j&=v^T \tanh(W_1 e_j+W_2 d_i),j\in(1,\dots,n)\\
+a^i_j&=\text{softmax}(u^i_j),j\in(1,\dots,n)\\
+d'_i&=\sum_{j=1}^n a^i_j e_j
+\end{aligned}</script><p>其中 $v,W_1,W_2$ 是学习参数。</p>
+<h2 id="2-3-指针网络"><a href="#2-3-指针网络" class="headerlink" title="2.3 指针网络"></a>2.3 指针网络</h2><p>之前的 Sequence-to-Sequence 模型在一个固定大小的输出中使用 softmax 分布来计算 $p(C_i|C_1,\dots,C_{i-1},\mathcal{P})$，因此它不能用于解决输出长度与输入序列长度相同的问题。为了解决这个问题，我们用注意力机制来模型化 $p(C_i|C_1,\dots,C_{i-1},\mathcal{P})$，其公式如下：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+u^i_j&=v^T \tanh(W_1 e_j+W_2 d_i),j\in(1,\dots,n)\\
+p(C_i|C_1,\dots,C_{i-1},\mathcal{P})&=\text{softmax}(u^i)
+\end{aligned}</script><h1 id="3-问题与数据集"><a href="#3-问题与数据集" class="headerlink" title="3 问题与数据集"></a>3 问题与数据集</h1>]]></content>
       <categories>
         <category>笔记</category>
       </categories>
