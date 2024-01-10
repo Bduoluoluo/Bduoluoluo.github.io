@@ -33,4 +33,286 @@ p(C_i|C_1,\dots,C_{i-1},\mathcal{P})&=\text{softmax}(u^i)
         <tag>ML2CO</tag>
       </tags>
   </entry>
+  <entry>
+    <title>NANotes by Kelin</title>
+    <url>/NANotes/</url>
+    <content><![CDATA[<h1 id="第1章-引论"><a href="#第1章-引论" class="headerlink" title="第1章 引论"></a>第1章 引论</h1><h3 id="1-1-误差的来源"><a href="#1-1-误差的来源" class="headerlink" title="1.1 误差的来源"></a>1.1 误差的来源</h3><ol>
+<li><p>模型误差：建立理想化数学模型时产生的误差。例： $G=9.81m$ 。</p>
+</li>
+<li><p>观测误差：实验中的观测结果和实际值之间的误差。</p>
+</li>
+<li><p>截断误差：对无穷过程进行截断产生的误差。</p>
+<p> 例： $e^x=\sum_{k=0}^{\infty}\frac{x^k}{k!},\ S_n(x)=\sum_{k=0}^n\frac{x^k}{k!}$ ，根据 $\rm Taylor$ 余项定理，可得部分和的截断误差为</p>
+<script type="math/tex; mode=display">
+ R_n(x)=e^x-S_n(x)=\frac{x^{n+1}}{(n+1)!}e^{\theta x},\ 0<\theta<1</script></li>
+<li><p>舍入误差：用与真实值接近的有限长的数字表示它时所产生的误差。</p>
+</li>
+</ol>
+<h3 id="1-2-误差、误差限、相对误差和有效数字"><a href="#1-2-误差、误差限、相对误差和有效数字" class="headerlink" title="1.2 误差、误差限、相对误差和有效数字"></a>1.2 误差、误差限、相对误差和有效数字</h3><ol>
+<li>误差： $e=x^*-x$ </li>
+<li>绝对误差： $\varepsilon(x)=|x-x^*|$ </li>
+<li>绝对误差限： $\varepsilon(x)\le\frac12\times10^{-n}=\eta$ </li>
+<li>相对误差： $e_r=\left|\frac{x^<em>-x}{x^</em>}\right|$ </li>
+<li>相对误差限： $|e_r|\le\frac{\eta}{|x^*|}=\varepsilon_r(x)$ </li>
+<li>有效数字： $x^<em>=\pm0.a_1a_2…a_l…a_n\times10^m,\ a_1\neq 0$ ，若 $|x^</em>-x|\le\frac12\times10^{m-l}=\eta$ ，则 $x^*$ 有 $l$ 位有效数字。</li>
+</ol>
+<h3 id="1-3-绝对误差、相对误差与有效数字的关系"><a href="#1-3-绝对误差、相对误差与有效数字的关系" class="headerlink" title="1.3 绝对误差、相对误差与有效数字的关系"></a>1.3 绝对误差、相对误差与有效数字的关系</h3><script type="math/tex; mode=display">
+x=0.a_1a_2...a_l...a_n\times10^m,\ a_1\neq0</script><ol>
+<li>相对误差与有效数字的关系 <ol>
+<li>$x^<em>$ 有 $n$ 位有效数字 $\Rightarrow\varepsilon_r(x^</em>)=\frac1{2a_1}\times10^{-n+1}$ </li>
+<li>$\varepsilon_r(x^<em>)=\frac1{2(a_1+1)}\times10^{-n+1}\Rightarrow$ $x^</em>$ 至少有 $n$ 位有效数字</li>
+</ol>
+</li>
+<li>有效数字的判定方法：定义法、<strong>四舍五入法</strong>、定理 $2$ <ul>
+<li>例：$x=3.786,\ x^*=3.79$ <ol>
+<li>$x^<em>$ 符合四舍五入法则，故 $x^</em>$ 有 $3$ 位有效数字；</li>
+<li>$|x-x^<em>|=0.004\le\frac12\times10^{-2}\Rightarrow x^</em>$ 有 $3$ 位有效数字；</li>
+<li>$\left|\frac{x^<em>-x}x\right|=\frac{0.004}{3.786}=0.106\times10^{-4}\le\frac1{2(3+1)}\times10^{-3+1}\Rightarrow x^</em>$ 有 $3$ 位有效数字。 </li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="1-4-算术运算的误差限估计及应用"><a href="#1-4-算术运算的误差限估计及应用" class="headerlink" title="1.4 算术运算的误差限估计及应用"></a>1.4 算术运算的误差限估计及应用</h3><ol>
+<li><p>$\eta(x^<em>+y^</em>)=\eta(x^<em>)+\eta(y^</em>)$ </p>
+<p> $\eta(x^<em>-y^</em>)=\eta(x^<em>)+\eta(y^</em>)$ </p>
+</li>
+<li><p>$\eta(x^<em>y^</em>)\approx|x^<em>|\eta(y^</em>)+|y^<em>|\eta(x^</em>)$ </p>
+</li>
+<li>$\eta\left(\frac{x^<em>}{y^</em>}\right)\approx\frac{|x^<em>|\eta(y^</em>)+|y^<em>|\eta(x^</em>)}{|y^*|^2}$ </li>
+<li>对于 $y=f(x)$ <ul>
+<li>绝对误差： $\eta(y)\approx|f’(x^*)|\cdot\eta(x)$ </li>
+<li>相对误差： $|e_r(y)|\approx\left|f’(x^<em>)\cdot\frac{x^</em>}{f(x^*)}\right|\cdot|e_r(x)|$ </li>
+</ul>
+</li>
+<li>对于多元函数 $y=f(x_1,x_2,…,x_n)$ <ul>
+<li>绝对误差：$e(y)\approx\sum_{k=1}^n\frac{\partial f(x_1^<em>,x_2^</em>,…,x_n^*)}{\partial x_k}\cdot e(x_k)$ </li>
+<li>相对误差：$e(y)\approx\sum_{k=1}^n\frac{\partial f(x_1^<em>,x_2^</em>,…,x_n^<em>)}{\partial x_k}\cdot\frac{x_k^</em>}{y^*}\cdot e(x_k)$ </li>
+</ul>
+</li>
+</ol>
+<h1 id="第2章-插值方法与曲线拟合"><a href="#第2章-插值方法与曲线拟合" class="headerlink" title="第2章 插值方法与曲线拟合"></a>第2章 插值方法与曲线拟合</h1><h3 id="2-1-rm-Lagrange-插值"><a href="#2-1-rm-Lagrange-插值" class="headerlink" title="2.1 $\rm Lagrange$ 插值"></a>2.1 $\rm Lagrange$ 插值</h3><ol>
+<li><p>基函数： $ l_i(x)=\prod_{i\neq j}\frac{x-x_j}{x_i-x_j}$ </p>
+<ul>
+<li>$\sum_{k=0}^nl_k(x)\equiv1$ </li>
+<li>$l_i(x_j)=[i=j]$ </li>
+</ul>
+</li>
+<li><p>插值多项式： $ P_n(x)=\sum_{k=0}^ny_kl_k(x)$ </p>
+</li>
+<li><p>余项：$R_n(x)=f(x)-P_n(x)=\frac{f^{(n+1)}(\xi)}{(n+1)!}\omega_n(x)$ ，其中 $\omega_n(x)=\prod_{i=0}^n(x-x_i),\ \xi\in(a,b)$  </p>
+<p> 估计截断误差： $|R_n(x)| \le\frac{|\omega_n(x)|}{(n+1)!}\cdot\max_{\xi\in(a,b)}|f^{(n+1)}(\xi)|$  </p>
+</li>
+</ol>
+<h3 id="2-2-rm-Newton-插值"><a href="#2-2-rm-Newton-插值" class="headerlink" title="2.2 $\rm Newton$ 插值"></a>2.2 $\rm Newton$ 插值</h3><ol>
+<li><p>插值多项式： $N_n(x)=f(x_0)+f<a href="x-x_0">x_0,x_1</a>+f<a href="x-x_0">x_0,x_1,x_2</a>(x-x_1)+\cdots f<a href="x-x_0">x_0,x_1,\dots,x_n</a>(x-x_1)\cdots(x-x_{n-1})$ </p>
+</li>
+<li><p>余项： $R_n(x)=f(x)-N_n(x)=f[x,x_0,x_1,\dots,x_n]\omega_n(x)=\frac{f^{(n+1)}(\xi)}{(n+1)!}\omega_n(x),\ \xi\in(a, b)$ </p>
+</li>
+<li><p>差商：$ f[x_i,…,x_j]=\frac{f[x_i,…,x_{j-1}]-f[x_{i+1},…,x_j]}{x_i-x_j}$</p>
+<p> $n$ 阶差商： $f[x_0,…,x_n]=\sum_{k=0}^nf(x_k)\prod_{i\neq k}\frac1{x_k-x_i}$  </p>
+</li>
+</ol>
+<h3 id="2-3-rm-Hermite-插值"><a href="#2-3-rm-Hermite-插值" class="headerlink" title="2.3 $\rm Hermite$ 插值"></a>2.3 $\rm Hermite$ 插值</h3><ol>
+<li><p>插值多项式：$H_{2n+1}(x)=\sum_{i=0}^n\alpha_i(x)f(x_i)+\beta_i(x)f’(x_i)$ </p>
+</li>
+<li><p>基函数： $\alpha_i=\left[1-2(x-x_i)\sum_{k\neq i}\frac1{x_i-x_k}\right]l_i^2(x),\ \beta_i=(x-x_i)l_i^2(x)$ </p>
+</li>
+<li><p>余项： $R_{2n+1}(x)=f(x)-H_{2n+1}(x)=\frac{f^{(2n+2)}(\xi)}{(2n+2)!}\omega_n^2(x),\ \xi\in(a,b)$ </p>
+</li>
+<li><p>不规则 $\rm Hermite$ 插值</p>
+<ol>
+<li>基函数法</li>
+<li>基于承袭性</li>
+<li>基于 $\rm Lagrange$ 插值多项式</li>
+</ol>
+<ul>
+<li><p>例：$f(0)=1,f(1)=1,f(2)=1,f’(0)=0,f’(1)=1$ </p>
+<ol>
+<li><p>$H_4(x)=\alpha_1(x)+\alpha_2(x)+\beta_1(x)$ ，待定系数求出基函数，可得</p>
+<script type="math/tex; mode=display">
+ \alpha_1(x)=x^2(x-2)^2,\ \alpha_2(x)=\frac14x^2(x-1)^2,\ \beta_1(x)=-x^2(x-1)(x-2)</script><p> 故 $H_4(x)=\frac14x^4-\frac32x^3+\frac94x^2$ ，余项 $R_4(x)=\dfrac{f^{(5)}(\xi)}{5!}(x-0)^2(x-1)^2(x-2),\ \xi\in(0,2)$  。</p>
+<p>2.考虑 $x_0=0,x_1=1$ ，可得 $H_3=-x^3+2x^2$ ，由 $H_4(x)=H_3(x)+c(x-0)^2(x-1)^2$ 以及 $H_4(2)=1$ ，解得 $c=\dfrac14$ 。</p>
+</li>
+</ol>
+</li>
+<li><p>例： $f(1)=2,f(2)=4,f(3)=12,f’(2)=3$ </p>
+<p>  解：设 $H_3(x)=P_2(x)+c(x-1)(x-2)(x-3)$ ，由 $H_3’(2)=3$ ，解得 $c=2$ 。</p>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="2-4-分段线性插值"><a href="#2-4-分段线性插值" class="headerlink" title="2.4 分段线性插值"></a>2.4 分段线性插值</h3><ol>
+<li>插值多项式： $f(x)\approx S_1(x)=y_i\frac{x-x_{i+1}}{x_i-x_{i+1}}+y_{i+1}\frac{x-x_i}{x_{i+1}-x_i},\ x\in[x_i,x_{i+1}]$ </li>
+<li>收敛性： $|f(x)-S_1(x)|\le\frac M8h^2$ ，其中 $M=\max_{x\in[a,b]}|f’’(x)|$ <ul>
+<li>要求误差不超过 $\varepsilon$ ，可得步长的范围 $h&lt;\sqrt\frac{8\varepsilon}M$ </li>
+</ul>
+</li>
+</ol>
+<h3 id="2-5-直线拟合的最小二乘法"><a href="#2-5-直线拟合的最小二乘法" class="headerlink" title="2.5 直线拟合的最小二乘法"></a>2.5 直线拟合的最小二乘法</h3><ol>
+<li>正规方程组： $g(x)=a+bx$ <script type="math/tex; mode=display">
+ \left\{\begin{align}
+ na+b\sum_{k=1}^nx_k&=\sum_{k=1}^ny_k\\
+ a\sum_{k=1}^nx_k+b\sum_{k=1}^nx^2&=\sum_{k=1}^nx_ky_k
+ \end{align}\right.</script></li>
+</ol>
+<h1 id="第3章-数值积分和数值微分"><a href="#第3章-数值积分和数值微分" class="headerlink" title="第3章 数值积分和数值微分"></a>第3章 数值积分和数值微分</h1><h3 id="3-1-机械求积公式及代数精度"><a href="#3-1-机械求积公式及代数精度" class="headerlink" title="3.1 机械求积公式及代数精度"></a>3.1 机械求积公式及代数精度</h3><ol>
+<li>机械求积公式： $\int_a^bf(x)\mathrm{d}x\approx\sum_{i=0}^nA_if(x_i)$ </li>
+<li>代数精度：若 $f(x)=1,x,x^2,…,x^m$ 时，求积公式精确成立， $f(x)=x^{m+1}$ 时近似成立，则代数精度为 $m$ 次。</li>
+<li>构造方法：<ol>
+<li>利用代数精度条件求解系数方程组</li>
+<li><strong>插值型求积公式</strong>：$\int_a^bf(x)\mathrm{d}x\approx\int_a^bP_n(x)\mathrm{d}x\Leftrightarrow A_k=\int_a^bl_k(x)\mathrm{d}x\Leftrightarrow$ 代数精度至少为 $n$ 次</li>
+</ol>
+</li>
+</ol>
+<h3 id="3-2-基本数值积分公式"><a href="#3-2-基本数值积分公式" class="headerlink" title="3.2  基本数值积分公式"></a>3.2  基本数值积分公式</h3><ol>
+<li><p>梯形公式： $T=\frac12(b-a)[f(a)+f(b)]$ </p>
+<p> 余项： $R_T=-\frac1{12}(b-a)^3f’’(\xi)=O(b-a)^3$ </p>
+</li>
+<li><p>$\rm Simpson$ 公式：$S=\frac{b-a}6\left[f(a)+4f\left(\frac{a+b}2\right)+f(b)\right]$ </p>
+<p> 余项： $R_S=-\frac{b-a}{180}\left(\frac{b-a}2\right)^4f^{(4)}(\xi)=O(b-a)^5$ </p>
+</li>
+<li><p>复化梯形公式： $T_n=\frac h2[f(a)+2\sum_{k=1}^{n-1}f(x_k)+f(b)],\ h=\frac{b-a}n$ </p>
+<p> 余项：$ I-T_n\approx-\frac{h^2}{12}[f’(b)-f’(a)]=-\frac{b-a}{12}h^2f’’(\xi)=O(h^2)$ </p>
+<p> ​            $I-S_n\approx-\frac{h^4}{180}[f’’’(b)-f’’’(a)]=-\frac{b-a}{180}h^4f^{(4)}(\xi)=O(h^4)$ </p>
+</li>
+<li><p>变步长梯形公式</p>
+<ol>
+<li>公式： $T_{2n}=\frac12T_n+\frac h2\sum_{k=0}^{n-1}f(x_{k+\frac12})$ </li>
+<li>后验估计： $ I-T_{2n}\approx\frac13(T_{2n}-T_n)$ ， $|T_{2n}-T_n|&lt;\varepsilon\Rightarrow|I-T_{2n}|&lt;\varepsilon$  </li>
+</ol>
+</li>
+<li><p>$\rm Romberg$ 外推法： $ S_n=\frac43T_{2n}-\frac13T_n,\ C_n=\frac{16}{15}S_{2n}-\frac1{15}S_n,\ R_n=\frac{64}{63}C_{2n}-\frac1{63}C_n$ </p>
+<p> 截止条件：同名相邻两项差的绝对值 $&lt;\varepsilon$ 即可</p>
+</li>
+</ol>
+<h1 id="第4章-常微分方程数值解法"><a href="#第4章-常微分方程数值解法" class="headerlink" title="第4章 常微分方程数值解法"></a>第4章 常微分方程数值解法</h1><h3 id="4-1-基本公式"><a href="#4-1-基本公式" class="headerlink" title="4.1 基本公式"></a>4.1 基本公式</h3><ol>
+<li><p>$\rm Euler$ 法： $y_{n+1}=y_n+hf(x_n,y_n),\ O(h^2)$ </p>
+</li>
+<li><p>隐式 $\rm Euler$ 法： $y_{n+1}=y_n+hf(x_{n+1},y_{n+1}),\ O(h^2)$ </p>
+</li>
+<li><p>二步 $\rm Euler$ 法： $y_{n+1}=y_{n-1}+2hf(x_n,y_n),\ O(h^3)$ </p>
+</li>
+<li><p>梯形公式： $y_{n+1}=y_n+\frac h2[f(x_n,y_n)+f(x_{n+1},y_{n+1})],\ O(h^2)$</p>
+</li>
+<li><p>改进 $\rm Euler$ 法： $O(h^3),\ \lambda=\dfrac12$ </p>
+<script type="math/tex; mode=display">
+ \left\{\begin{align}
+ y_{n+1}&=y_n+\frac h2(k_1+k_2)\\
+ k_1&=f(x_n,y_n)\\
+ k_2&=f(x_n+h,y_n+hk_1)
+ \end{align}\right.</script></li>
+<li><p>变型 $\rm Euler$ 法： $O(h^3),\ \lambda=1$ </p>
+<script type="math/tex; mode=display">
+ \left\{\begin{align}
+ y_{n+1}&=y_n+hk_2\\
+ k_1&=f(x_n,y_n)\\
+ k_2&=f(x_n+\frac h2,y_n+\frac h2k_1)
+ \end{align}\right.</script></li>
+<li><p>二阶 $\rm Runge-Kutta$ 公式： $O(h^3)$ ，其中 $p\lambda=\dfrac12$ </p>
+<script type="math/tex; mode=display">
+ \left\{\begin{align}
+ y_{n+1}&=y_n+h[(1-\lambda)k_1+\lambda k_2]\\
+ k_1&=f(x_n,y_n)\\
+ k_2&=f(x_n+ph,y_n+phk_1)
+ \end{align}\right.</script></li>
+<li><p>经典四阶 $\rm Runge-Kutta$ 公式：$O(h^5)$ </p>
+<script type="math/tex; mode=display">
+ \left\{\begin{align}
+ y_{n+1}&=y_n+\frac 16(k_1+2k_2+2k_3+k_4)\\
+ k_1&=hf(x_n,y_n)\\
+ k_2&=hf(x_n+\frac h2,y_n+\frac{k_1}2)\\
+ k_3&=hf(x_n+\frac h2,y_n+\frac{k_2}2)\\
+ k_4&=hf(x_n+h,y_n+k_3)
+ \end{align}\right.</script></li>
+<li><p>算法精度的证明：假设 $y_n=y(x_n)$ ，求出 $y_{n+1}$ ，将 $y(x_{n+1})$ 在 $x_n$ 作 $\rm Taylor$ 展开，若 $y(x_{n+1})-y_{n+1}=O(h^{p+1})$ ，则算法具有 $p$ 阶精度。</p>
+<ul>
+<li><p>例：证明改进 $\rm Euler$ 法的精度为 $2$ 阶。</p>
+<p>  证明：令 $y_n=y(x_n)$ ，根据公式有</p>
+<script type="math/tex; mode=display">
+  \begin{align}
+  k_1&=y'(x_n)\\
+  k_2&=f(x_n+h,y_n+hy'(x_n))\\
+  &=f(x_n,y_n)+f_x'(x_n,y_n)h+f_y'(x_n,y_n)hy'(x_n)+O(h^2)\\
+  &=y(x_n)+hy''(x_n)+O(h^2)\\
+  \therefore y_{n+1}&=y(x_n)+\frac h2[2y'(x_n)+hy''(x_n)+O(h^2)]\\
+  &=y(x_n)+hy'(x_n)+\frac{h^2}2y''(x_n)+O(h^3)\\
+  \because  y(x_{n+1)}&=y(x_n)+hy'(x_n)+\frac{h^2}2y''(x_n)+O(h^3)
+  \end{align}</script><p>  故 $y(x_{n+1})-y_{n+1}=O(h^3)$ ，即改进 $\rm Euler$ 法的精度为 $2$ 阶。</p>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="4-2-收敛性与稳定性"><a href="#4-2-收敛性与稳定性" class="headerlink" title="4.2 收敛性与稳定性"></a>4.2 收敛性与稳定性</h3><ol>
+<li><p><strong>收敛性</strong> </p>
+<p> 定义 $1$ ：假设 $y_n=y(x_n)$ ，即第 $n$ 步计算是精确的前提下，称 $R_{n+1}=y(x_{n+1})-y_{n+1}$ 为单步法的局部截断误差。</p>
+<p> 定义 $2$ ：若某算法的局部截断误差为 $O(h^{p+1})$ ，称该算法有 $p$ 阶精度。</p>
+<p> <strong>单步法收敛</strong>：整体截断误差 $\lim_{h\to0,\ n\to\infty}(y(x_n)-y_n)=0$ ，其中 $x_n=x_0+nh$ 为固定值。</p>
+<p> <strong>单步法的收敛性定理</strong>：显式单步法 $y_{n+1}=y_n+h\varphi(x_n,y_n,h)$ 有 $p$ 阶精度，且增量函数 $\varphi(x,y,h)$ 关于 $y$ 满足 $\rm Lipschitz$ 条件：</p>
+<script type="math/tex; mode=display">
+ |\varphi(x,y,h)-\varphi(x,\bar y,h)|\le L_{\Phi}|y-\bar y|</script><p> 若初值 $y_0$ 是准确的，即 $y_0=y(x_0)$ ，则其整体的截断误差为 $y(x_n)-y_n=O(h^p)$ 。若单步法满足以上条件，显然其收敛。  </p>
+<ul>
+<li><p>例：证明改进 $\rm Euler$ 法 $y_{n+1}=y_n+\dfrac h2[f(x_n,y_n)+f(x_n+h,y_n+hf(x_n,y_n))]$ 的收敛性。</p>
+<p>  前提：$y_0=y(x_0)$ 且 $f(x,y)$ 满足 $\rm Lipschitz$ 条件，即 $|f(x,y)-f(x,\bar y)|\le L|x-\bar y|$ </p>
+<p>  证明：</p>
+<script type="math/tex; mode=display">
+  \begin{align}
+  |\varphi(x,y,h)-\varphi(x,\bar y,h)|&\le\frac 12(|f(x,y)-f(x,\bar y)|+|f(x+h,y+hf(x,y))-f(x+h,\bar y+hf(x,\bar y))|)\\
+  &\le\frac12(L|y-\bar y|+L|y+hf(x,y)-\bar y-hf(x,\bar y)|)\\
+  &\le\frac12(L|y-\bar y|+L|y-\bar y|+hL|f(x,y)-f(x,\bar y)|)\\
+  &\le L\left(1+\frac h2L\right)|y-\bar y|
+  \end{align}</script><p>  限定 $h\le h_0$ ，则 $|\varphi(x,y,h)-\varphi(x,\bar y,h)|\le L\left(1+\frac{h_0}2L\right)|y-\bar y|$ ，即 $\varphi(x,y,h)$ 满足 $\rm Lipschitz$ 条件，根据收敛性定理知改进 $\rm Euler$ 法收敛。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>稳定性</strong> </p>
+<p> 定义 $1$ ：设 $x_n$ 处的理想数值解为 $y_n$ ，而实际计算得到的近似值为 $\widetilde y_n$ ，称 $\delta_n=\widetilde y_n-y_n$ 为第 $n$ 步的扰动。</p>
+<p> 定义 $2$ ：若一种数值方法在节点 $x_n$ 处的数值解 $y_n$ 的扰动 $\delta_n\neq 0$ ，而在以后的各节点值$y_m\ (m&gt;n)$ 上有扰动 $\delta_m$ ，当 $|\delta_m|\le|\delta_n|,\ m=n+1,n+2,…$ ，则称该数值算法是稳定的。  </p>
+<p> 分析算法的数值稳定性常考察模型方程  ： $y’=\lambda y,\ \lambda&lt;0$ </p>
+<p> 证明步骤：</p>
+<ol>
+<li>假设在节点值 $y_n$上有扰动 $\delta_n$ ，在 $y_{n+1}$上有扰动 $\delta_{n+1}$ ；</li>
+<li>求出 $\delta_{n+1}=\widetilde y_{n+1}-y_{n+1}=…=\psi(h,\lambda)\delta_n$ ；</li>
+<li><p>稳定 $\Leftrightarrow|\delta_{n+1}|\le|\delta_n|\Leftrightarrow|\psi(\lambda,h)|\le 1$ ，结合 $\lambda&lt;0$ 解出 $h$ 的范围即可。</p>
+<p>例：证明 $\rm Euler$ 法的稳定性条件：可以求得 $\psi(\lambda,h)=1+h\lambda$ ，解得 $0&lt;h\le-\dfrac\lambda2$ 。</p>
+</li>
+</ol>
+</li>
+</ol>
+<h1 id="第5章-方程求根"><a href="#第5章-方程求根" class="headerlink" title="第5章 方程求根"></a>第5章 方程求根</h1><h3 id="5-1-根的隔离与二分法"><a href="#5-1-根的隔离与二分法" class="headerlink" title="5.1 根的隔离与二分法"></a>5.1 根的隔离与二分法</h3><ol>
+<li>根的隔离：若 $f(x)$ 在 $[a,b]$ 上连续，且 $f(a)f(b)\le 0$ ，则方程 $f(x)=0$ 在 $[a,b]$ 内至少有一个根。</li>
+<li>二分法：误差估计式： $|x^*-x_k|\le\dfrac{b-a}{2^k}$ ，根据精度要求估计二分次数 $k$ 。</li>
+</ol>
+<h3 id="5-2-迭代法"><a href="#5-2-迭代法" class="headerlink" title="5.2 迭代法"></a>5.2 迭代法</h3><ol>
+<li><p>不动点迭代法： $x_{k+1}=\varphi(x_k)$ </p>
+</li>
+<li><p>收敛性定理：迭代函数 $\varphi(x)\in C^1[a,b]$ 且</p>
+<ol>
+<li>当 $x\in[a,b]$ 时， $\varphi(x)\in[a,b]$ ；</li>
+<li><p>存在正数 $L&lt;1$ ，有 $\forall x\in[a,b],\ |\varphi’(x)|\le L&lt;1$  成立；</p>
+<p>则 $x=\varphi(x)$ 在 $[a,b]$ 上有唯一解 $x^<em>$ ，且对任意初值 $x_0\in[a,b]$ ，迭代过程 $x_{k+1}=\varphi(x_k)$ 收敛，且 $\lim_{k\to\infty}x_k=x^</em>$ 。</p>
+</li>
+</ol>
+</li>
+<li><p><strong>局部收敛性</strong>：$\varphi(x)\in C^1U(x^<em>)$ ，且 $|\varphi’(x^</em>)|&lt;1$ ，则迭代过程 $x_{k+1}=\varphi(x_k)$ 具有局部收敛性。</p>
+</li>
+<li><p><strong>收敛速度</strong>：$\varphi(x)\in C^2U(x^<em>)$ ，且 $|\varphi’(x^</em>)|&lt;1$ ，则</p>
+<ol>
+<li>当 $\varphi’(x^*)\neq 0$ 时，迭代过程为线性收敛；</li>
+<li>当 $\varphi’(x^<em>)=0,\ \varphi’’(x^</em>)\neq0$ 时，迭代过程为平方收敛；</li>
+</ol>
+</li>
+</ol>
+<h3 id="5-3-牛顿法"><a href="#5-3-牛顿法" class="headerlink" title="5.3 牛顿法"></a>5.3 牛顿法</h3><ol>
+<li><strong>牛顿迭代法</strong>： $x_{k+1}=x_k-\dfrac{f(x_k)}{f’(x_k)}$ </li>
+<li>由 $\varphi’(x)=\dfrac{f(x)f’’(x)}{[f’(x)]^2}$ ，可知牛顿迭代法具有<strong>局部收敛性</strong>，且一般（求非重根）是平方收敛的。</li>
+</ol>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>HUST</tag>
+      </tags>
+  </entry>
 </search>
