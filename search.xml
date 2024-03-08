@@ -25,7 +25,8 @@ d'_i&=\sum_{j=1}^n a^i_j e_j
 \begin{aligned}
 u^i_j&=v^T \tanh(W_1 e_j+W_2 d_i),j\in(1,\dots,n)\\
 p(C_i|C_1,\dots,C_{i-1},\mathcal{P})&=\text{softmax}(u^i)
-\end{aligned}</script><h1 id="3-问题与数据集"><a href="#3-问题与数据集" class="headerlink" title="3 问题与数据集"></a>3 问题与数据集</h1>]]></content>
+\end{aligned}</script><h1 id="3-问题与数据集"><a href="#3-问题与数据集" class="headerlink" title="3 问题与数据集"></a>3 问题与数据集</h1><p>在训练阶段，输入数据是有 $n$ 个元素的平面点集 $\mathcal{P}=\{P_1,\dots,P_n\}$，其中 $P_j=(x_j,y_j)$ 表示一个点的坐标，通过这些点我们需要找到对应问题（凸包问题、Delaunay 三角形剖分问题和旅行商问题）的近似解。而输出 $\mathcal{\mathcal{C}^\mathcal{P}}=\{C_1,\dots,C_{m(\mathcal{P})}\}$ 代表了与点集 $\mathcal{P}$ 相关的解。</p>
+]]></content>
       <categories>
         <category>笔记</category>
       </categories>
