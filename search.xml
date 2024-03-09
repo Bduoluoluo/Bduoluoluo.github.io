@@ -3,12 +3,20 @@
   <entry>
     <title>Attention, learn to solve routing problems</title>
     <url>/Attention,%20learn%20to%20solve%20routing%20problems/</url>
-    <content><![CDATA[]]></content>
+    <content><![CDATA[<h1 id="旅行商问题（TSP）"><a href="#旅行商问题（TSP）" class="headerlink" title="旅行商问题（TSP）"></a>旅行商问题（TSP）</h1><p>给定一系列城市和每对城市之间的距离，求解访问每一座城市一次并回到起始城市的最短回路。</p>
+<p>这是一个 NP 完全问题，当数据规模比较大的时候，目前几乎不可能找到精确解。</p>
+<p>所以本篇文章使用基于 Attention 的模型，同时用一个简单但是有效的 greedy rollout baseline 强化学习方式来训练模型。</p>
+<p>当然这个模型不止可以用来处理 TSP 问题，但是文章主要是以 TSP 为例进行说明。</p>
+<h1 id="模型架构"><a href="#模型架构" class="headerlink" title="模型架构"></a>模型架构</h1><p>一个问题实例 $s$ 定义为一个有 $n$ 个点的完全图，$x_i$ 表示节点特征，在 TSP 问题中，它是一个 $2$ 维向量，表示在平面上的一个点。TSP 问题的解定义为 $\pi=(\pi_1,\dots,\pi_n)$，是节点的一个排列。</p>
+<p>定义基于实例 $s$ 找到解 $\pi$ 的随机策略为</p>
+<script type="math/tex; mode=display">p_{\theta}(\pi|s)=\prod_{t=1}^{n}{p_{\theta}(\pi_t|s,\pi_{1:t-1})}</script><p>然后基于 Encoder-Decoder 框架，找到解 $\pi$。</p>
+<h1 id="Encoder"><a href="#Encoder" class="headerlink" title="Encoder"></a>Encoder</h1><p><img src="../Attention, learn to solve routing problems/a.jpg" alt="a"></p>
+]]></content>
       <categories>
         <category>笔记</category>
       </categories>
       <tags>
-        <tag>ML2CO</tag>
+        <tag>ML4CO</tag>
       </tags>
   </entry>
   <entry>
@@ -42,7 +50,7 @@ p(C_i|C_1,\dots,C_{i-1},\mathcal{P})&=\text{softmax}(u^i)
         <category>笔记</category>
       </categories>
       <tags>
-        <tag>ML2CO</tag>
+        <tag>ML4CO</tag>
       </tags>
   </entry>
 </search>
