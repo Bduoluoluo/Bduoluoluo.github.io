@@ -8,10 +8,29 @@
 <p>所以本篇文章使用基于 Attention 的模型，同时用一个简单但是有效的 greedy rollout baseline 强化学习方式来训练模型。</p>
 <p>当然这个模型不止可以用来处理 TSP 问题，但是文章主要是以 TSP 为例进行说明。</p>
 <h1 id="模型架构"><a href="#模型架构" class="headerlink" title="模型架构"></a>模型架构</h1><p>一个问题实例 $s$ 定义为一个有 $n$ 个点的完全图，$x_i$ 表示节点特征，在 TSP 问题中，它是一个 $2$ 维向量，表示在平面上的一个点。TSP 问题的解定义为 $\pi=(\pi_1,\dots,\pi_n)$，是节点的一个排列。</p>
-<p>定义基于实例 $s$ 找到解 $\pi$ 的随机策略为</p>
+<p>定义基于实例 $s$ 找到解 $\pi$ 的随机策略为：</p>
 <script type="math/tex; mode=display">p_{\theta}(\pi|s)=\prod_{t=1}^{n}{p_{\theta}(\pi_t|s,\pi_{1:t-1})}</script><p>然后基于 Encoder-Decoder 框架，找到解 $\pi$。</p>
-<h1 id="Encoder"><a href="#Encoder" class="headerlink" title="Encoder"></a>Encoder</h1><p><img src="../Attention, learn to solve routing problems/a.jpg" alt="a"></p>
-]]></content>
+<h1 id="Encoder"><a href="#Encoder" class="headerlink" title="Encoder"></a>Encoder</h1><p><img src="../Attention, learn to solve routing problems/encoder.png" alt="Encoder"></p>
+<p>输入 $x_i$ （batchsize, graphsize, nodedim）。</p>
+<p>Embedding $h_i^{(0)}=W^x x_i+b^x$ （batchsize, graphsize, embeddim）。</p>
+<p>N 层注意力层，每层由两个子层（MHA 和 FF）构成：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\hat{h}_i&=BN^{\ell}(h_i^{(\ell-1)}+MHA_i^{\ell}(h_1^{(\ell-1)},\dots,h_n^{(\ell-1)}))\\
+h_i^{(\ell)}&=BN^{\ell}(\hat{h}_i+FF^{\ell}(\hat{h}_i))\\
+\end{aligned}</script><p>在计算最后一层 $h_i^{(N)}$ 时，同时计算均值 $\bar{h}^{(N)}=\frac{1}{n}\sum_{i=1}^{n}{h_i^{(N)}}$，两者都作为 Decoder 的输入。</p>
+<h1 id="Attention-mechanism"><a href="#Attention-mechanism" class="headerlink" title="Attention mechanism"></a>Attention mechanism</h1><p><img src="../Attention, learn to solve routing problems/am.png" alt="Attention mechanism"></p>
+<p>首先定义键维度 $d_k$ 和值维度 $d_v$。</p>
+<p>通过如下计算得到键 $k_i\in\mathbb{R}^{d_k}$，值 $v_i\in\mathbb{R}^{d_v}$ 和询问 $q_i\in\mathbb{R}^{d_k}$：</p>
+<script type="math/tex; mode=display">q_i=W^Q h_i,\ k_i=W^K h_i,\ v_i=W^V h_i</script><p>然后计算 compatibility $u_{ij}\in\mathbb{R}$：</p>
+<script type="math/tex; mode=display">
+u_{ij}=
+\left\{\begin{matrix}
+\frac{q_i^T k_j}{\sqrt{d_k}} & \text{if}\ i\ \text{adjacent to}\ j \\
+-\infty & \text{otherwise}
+\end{matrix}\right.</script><p>将其进行 softmax 操作得到注意力权重 $a_{ij}\in[0,1]$：</p>
+<script type="math/tex; mode=display">a_{ij}=\frac{e^{u_{ij}}}{\sum_{j'}{e^{u_{ij'}}}}</script><p>最后把权重 $a_{ij}$ 和值 $v_j$ 进行加权求和得到输出：</p>
+<script type="math/tex; mode=display">h'_i=\sum_j{a_{ij} v_j}</script>]]></content>
       <categories>
         <category>笔记</category>
       </categories>
