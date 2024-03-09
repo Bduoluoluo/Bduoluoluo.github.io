@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Attention, learn to solve routing problems</title>
+    <url>/Attention,%20learn%20to%20solve%20routing%20problems/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>ML2CO</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>NIPS-2015-pointer-networks-Paper</title>
     <url>/NIPS-2015-pointer-networks-Paper/</url>
     <content><![CDATA[<h1 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h1><p>引入一种新的神经结构，我们将其称为 Pointer Net，用于学习输出序列的条件概率，其中输出序列的元素是对应于输入序列位置的离散标记。</p>
