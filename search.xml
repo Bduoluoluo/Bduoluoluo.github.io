@@ -115,4 +115,22 @@ p(C_i|C_1,\dots,C_{i-1},\mathcal{P})&=\text{softmax}(u^i)
         <tag>ML4CO</tag>
       </tags>
   </entry>
+  <entry>
+    <title>number-theory-basic</title>
+    <url>/number-theory-basic/</url>
+    <content><![CDATA[<h1 id="数论基础"><a href="#数论基础" class="headerlink" title="数论基础"></a>数论基础</h1><h2 id="质数"><a href="#质数" class="headerlink" title="质数"></a>质数</h2><p>定义：在大于 $1$ 的正整数中，若其除了 $1$ 和本身之外没有其他约数，则称这个数为质数。</p>
+<h2 id="质因数分解"><a href="#质因数分解" class="headerlink" title="质因数分解"></a>质因数分解</h2><p>设正整数 $a$，那么必有表示：</p>
+<script type="math/tex; mode=display">a = {p_1}^{\alpha_1} {p_2}^{\alpha_2} \cdots {p_s}^{\alpha_s}, p_1 < p_2 < \dots < p_s</script><p>其中 $p_i (1 \leq i \leq s)$ 是质数。</p>
+<p>那么当给定一个正整数 $a$，如何能够将其质因数分解呢？</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+<p>首先很容易可以想到一个暴力做法：因为质因子肯定不会超过 $a$，那么从 $2$ 枚举到 $a$，对于每个数都用 $a$ 去尝试能否整除即可。</p>
+<p>但是仔细想想，其实我们的枚举范围可以缩小，只需要从 $2$ 枚举到 $\sqrt{a}$ 即可。因为不难发现，如果存在一个质数 $p_i \mid a, p_i &gt; \sqrt{a}$，那么这样的质数至多只有一个，且其指数 $\alpha_i$ 至多为 $1$。因此当我们把其他较小的质因子都枚举完之后，剩下的那个大质因子也就直接能找到了。</p>
+]]></content>
+      <categories>
+        <category>教学</category>
+      </categories>
+      <tags>
+        <tag>number theory</tag>
+      </tags>
+  </entry>
 </search>
