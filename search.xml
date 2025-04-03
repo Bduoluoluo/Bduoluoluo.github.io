@@ -399,11 +399,6 @@ b_i&=f(i)-(s_i-L')^2
       </tags>
   </entry>
   <entry>
-    <title>test</title>
-    <url>/test/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
     <title>number-theory-basic</title>
     <url>/number-theory-basic/</url>
     <content><![CDATA[<h1 id="数论基础"><a href="#数论基础" class="headerlink" title="数论基础"></a>数论基础</h1><h2 id="质数"><a href="#质数" class="headerlink" title="质数"></a>质数</h2><p>在大于 $1$ 的正整数中，若其除了 $1$ 和本身之外没有其他约数，则称这个数为质数，否则就是合数。</p>
@@ -747,5 +742,10 @@ i^{-1}\equiv
       <tags>
         <tag>number theory</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>test</title>
+    <url>/test/</url>
+    <content><![CDATA[]]></content>
   </entry>
 </search>
