@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>template</title>
+    <url>/template/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>模板</category>
+      </categories>
+      <tags>
+        <tag>template</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>dynamic-programming</title>
     <url>/dynamic-programming/</url>
     <content><![CDATA[<h1 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h1><p>动态规划问题往往需要满足以下这些条件：最优子结构、无后效性和子问题重叠。</p>
