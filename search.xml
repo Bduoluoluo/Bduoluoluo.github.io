@@ -3,13 +3,19 @@
   <entry>
     <title>template</title>
     <url>/template/</url>
-    <content><![CDATA[]]></content>
+    <content><![CDATA[<h1 id="test"><a href="#test" class="headerlink" title="test"></a>test</h1>]]></content>
       <categories>
         <category>模板</category>
       </categories>
       <tags>
         <tag>template</tag>
       </tags>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/template/aa/</url>
+    <content><![CDATA[<p>sdafsadf</p>
+]]></content>
   </entry>
   <entry>
     <title>dynamic-programming</title>
